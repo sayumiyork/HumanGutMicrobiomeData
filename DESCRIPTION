@@ -1,0 +1,16 @@
+Package: HumanGutMicrobiomeData
+Title: Data Package for Various Human Gut 16S studies
+Version: 0.0.0.9000
+Authors@R: 
+    person("Sayumi", "York", , "syork@ndm.edu", role = c("aut", "cre"))
+Description: Contains the RDS files and code used to generate them for various human gut 16S rRNA amplicon data meant for use in the C-MOOR Human Gut 16srRNA Microbiome miniCURE. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: 
+    R (>= 3.5)
+LazyData: true
+Imports: 
+    phyloseq,
+    tibble
