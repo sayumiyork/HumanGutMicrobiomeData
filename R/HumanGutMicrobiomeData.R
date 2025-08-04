@@ -106,6 +106,32 @@
 #' @source \url{https://github.com/fernanda-t/microbiome-oc}
 "oc_no948N2_counts"
 
+#' Data of Terrazas et al.'s 2025 study on the effect of oral contraceptives on the gut microbiome, normalized by proportions. Only the samples with data for agefirstOCuse are included
+#'
+#'  Count data for fecal samples representing the gut microbiome of subjects on various dosages including none of oral contraceptives. Only the samples with data for agefirstOCuse are included
+#'
+#' @format A phyloseq object:
+#' \describe{
+#'   \item{otu_table}{Relative abundance of ASVs per each sample. 5457 ASVs are represented across 89 samples}
+#'   \item{sample_data}{Metadata table connecting metadata to each sample. Contains 89 samples by 25 sample variables}
+#'   \item{tax_table}{A table listing the taxonomic assignment of each ASV. Contains 5457 taxa across 7 taxonomic ranks}
+#' }
+#' @source \url{https://github.com/fernanda-t/microbiome-oc}
+"oc_agefirstOCuse"
+
+#' Data of Terrazas et al.'s 2025 study on the effect of oral contraceptives on the gut microbiome, in raw counts. Only the samples with data for agefirstOCuse are included
+#'
+#'  Count data for fecal samples representing the gut microbiome of subjects on various dosages including none of oral contraceptives. Only the samples with data for agefirstOCuse are included
+#'
+#' @format A phyloseq object:
+#' \describe{
+#'   \item{otu_table}{Counts of ASVs per each sample. 5457 ASVs are represented across 89 samples}
+#'   \item{sample_data}{Metadata table connecting metadata to each sample. Contains 89 samples by 25 sample variables}
+#'   \item{tax_table}{A table listing the taxonomic assignment of each ASV. Contains 5457 taxa across 7 taxonomic ranks}
+#' }
+#' @source \url{https://github.com/fernanda-t/microbiome-oc}
+"oc_agefirstOCuse_counts"
+
 #' Data of Zhuang et al's 2018 study examining fecal samples representing the gut microbiome of patients with a clinical diagnosis of Alzheimer's disease and age-sex matched controls in normalized proportions. Data were reprocessed in dada2 using Silva database 138.2.
 #'
 #'  Relative abundance data for fecal samples representing the gut microbiome of subjects with a clinical diagnosis of Alzheimer's disease and age-sex matched controls.
