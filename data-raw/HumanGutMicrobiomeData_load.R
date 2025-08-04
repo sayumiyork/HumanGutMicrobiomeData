@@ -19,7 +19,8 @@ oc_dosage <- readRDS("data-raw/oc_dosage.RDS") #Normalized by proportions, only 
 oc_dosage_counts <- readRDS("data-raw/oc_dosage_counts.RDS") #Raw counts, only samples with dosage data
 oc_no948N2  <- readRDS("data-raw/oc_no948N2.RDS") #Normalized by proportions, no sample 948N2, identified as an outlier in NMDS plot
 oc_no948N2_counts <- readRDS("data-raw/oc_no948N2_counts.RDS") #Raw counts,  no sample 948N2, identified as an outlier in NMDS plot
-
+oc_agefirstOCuse <- readRDS("data-raw/oc_agefirstOCuse.RDS") #Normalized by proportions, only samples with agefirstOCuse data
+oc_agefirstOCuse_counts <- readRDS("data-raw/oc_agefirstOCuse_counts.RDS") #Raw counts, only samples with agefirstOCuse data
 
 #Alzheimer's disease
 #Zhuang, Zhen-Qian, et al. "Gut microbiota is altered in patients with Alzheimer’s disease." Journal of Alzheimer’s Disease 63.4 (2018): 1337-1346.
@@ -38,6 +39,8 @@ usethis::use_data(oc_dosage, overwrite = TRUE)
 usethis::use_data(oc_dosage_counts, overwrite = TRUE)
 usethis::use_data(oc_no948N2, overwrite = TRUE)
 usethis::use_data(oc_no948N2_counts, overwrite = TRUE)
+usethis::use_data(oc_agefirstOCuse, overwrite = TRUE)
+usethis::use_data(oc_agefirstOCuse_counts, overwrite = TRUE)
 
 usethis::use_data(ad, overwrite = TRUE)
 usethis::use_data(ad_counts, overwrite = TRUE)
