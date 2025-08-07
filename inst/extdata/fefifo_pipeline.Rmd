@@ -1,0 +1,70 @@
+---
+title: "16S_MISO_phyloseq"
+output: html_document
+date: "2025-02-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load libraries
+library(phyloseq)
+
+# Load otu_table, sample_data, and tax_table files
+taxa <- read.csv("FeFiFo_taxtab_SY.csv", sep=",", row.names=1)
+samdf <- read.csv("FeFiFo_samdf_SY.csv", row.names=1)
+seqtab <- read.csv("FeFiFo_seqtab_SY.csv", sep=",", row.names=1)
+
+# Correct factors
+samdf$subject <- as.factor(samdf$subject)
+samdf$timepoint <- as.factor(samdf$timepoint)
+
+
+# Create phyloseq object
+fefifo_counts <- phyloseq(otu_table(seqtab, taxa_are_rows=FALSE), 
+               sample_data(samdf), 
+               tax_table(as.matrix(taxa)))
+fefifo_counts
+
+
+#Remove ASVs with 0 reads across all samples (no ASVs with 0 reads in FeFiFo)
+fefifo_counts <- prune_taxa(taxa_sums(fefifo) > 0, fefifo)
+
+#Convert counts to proportions
+fefifo <- transform_sample_counts(fefifo_counts, function(otu) otu/sum(otu))
+fefifo
+
+# Barplot tests
+plot_bar(fefifo, x="subject", fill = "Class", title = "My title") +
+  geom_bar(aes(color = Class, fill = Class), stat = "identity", position = "stack")
+
+plot_bar(fefifo, x="timepoint", fill = "Phylum", title = "Data sampling by subject") +
+  geom_bar(aes(color = Phylum, fill = Phylum), stat = "identity", position = "stack") +
+  facet_wrap(~subject)
+
+
+#Multidimensional analysis test
+fefifo.bray <- ordinate(fefifo, method="NMDS", distance="bray")
+
+p <- plot_ordination(fefifo, fefifo.bray, 
+                     color = "subject", 
+                     shape = "timepoint", 
+                     title="Bray NMDS - by metadata")
+p
+
+#Alpha diversity test
+fefifo_alpha <-plot_richness(fefifo_counts, x="subject", 
+                             color="timepoint", 
+                             #shape="location", 
+                             measures="Shannon")
+fefifo_alpha
+
+
+#Save
+saveRDS(fefifo, "fefifo.RDS")
+saveRDS(fefifo_counts, "fefifo_counts.RDS")
+
+#Load
+fefifo<-readRDS("fefifo.RDS")
+fefifo_counts<-readRDS("fefifo_counts.RDS")
